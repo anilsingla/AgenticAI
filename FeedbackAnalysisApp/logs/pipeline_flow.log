@@ -1,0 +1,193 @@
+[2026-05-18 20:29:24] pipeline                  INFO     Loaded 17 product doc chunks into RAG
+[2026-05-18 20:29:25] pipeline                  INFO     [STAGE] CSV Reader | Load CSV files and normalize feedback into one schema.
+[2026-05-18 20:29:25] csv_reader_agent          INFO     [FLOW] CSV Reader started: loading reviews and support emails.
+[2026-05-18 20:29:25] csv_reader_agent          INFO     Loaded 30 app store reviews
+[2026-05-18 20:29:25] csv_reader_agent          INFO     Loaded 20 support emails
+[2026-05-18 20:29:30] csv_reader_agent          INFO     Stored 50 feedback items in RAG
+[2026-05-18 20:29:30] csv_reader_agent          INFO     [FLOW] CSV Reader completed: 50 total items loaded (0 errors).
+[2026-05-18 20:29:30] pipeline                  INFO     [STAGE] Classifier | Classify each item into Bug/Feature/Praise/Complaint/Spam.
+[2026-05-18 20:29:30] classifier_agent          INFO     [FLOW] Classifier started: 50 items, mode=Deterministic fallback.
+[2026-05-18 20:29:30] classifier_agent          INFO     R001 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     R002 → Praise (0.95)
+[2026-05-18 20:29:30] classifier_agent          INFO     R003 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     R004 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     R005 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     R006 → Praise (0.95)
+[2026-05-18 20:29:30] classifier_agent          INFO     R007 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     R008 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     R009 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     R010 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     R011 → Praise (0.72)
+[2026-05-18 20:29:30] classifier_agent          INFO     R012 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     R013 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     R014 → Complaint (0.82)
+[2026-05-18 20:29:30] classifier_agent          INFO     R015 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     R016 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     R017 → Praise (0.95)
+[2026-05-18 20:29:30] classifier_agent          INFO     R018 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     R019 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     R020 → Complaint (0.82)
+[2026-05-18 20:29:30] classifier_agent          INFO     R021 → Spam (0.99)
+[2026-05-18 20:29:30] classifier_agent          INFO     R022 → Praise (0.72)
+[2026-05-18 20:29:30] classifier_agent          INFO     R023 → Spam (0.99)
+[2026-05-18 20:29:30] classifier_agent          INFO     R024 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     R025 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     R026 → Praise (0.95)
+[2026-05-18 20:29:30] classifier_agent          INFO     R027 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     R028 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     R029 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     R030 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     E001 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     E002 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     E003 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     E004 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     E005 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     E006 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     E007 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     E008 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     E009 → Complaint (0.60)
+[2026-05-18 20:29:30] classifier_agent          INFO     E010 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     E011 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     E012 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     E013 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     E014 → Complaint (0.60)
+[2026-05-18 20:29:30] classifier_agent          INFO     E015 → Bug (0.91)
+[2026-05-18 20:29:30] classifier_agent          INFO     E016 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     E017 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     E018 → Feature Request (0.93)
+[2026-05-18 20:29:30] classifier_agent          INFO     E019 → Bug (0.94)
+[2026-05-18 20:29:30] classifier_agent          INFO     E020 → Feature Request (0.93)
+[2026-05-18 20:29:30] pipeline                  INFO     [STAGE] Bug Analyzer | Enrich only Bug items with technical details and severity.
+[2026-05-18 20:29:30] bug_analyzer_agent        INFO     [FLOW] Bug Analyzer started: 23 bug items, mode=Deterministic fallback.
+[2026-05-18 20:29:31] bug_analyzer_agent        INFO     R001 → severity=Critical, component=Settings, known_bug=BUG-101
+[2026-05-18 20:29:31] bug_analyzer_agent        INFO     R003 → severity=High, component=Authentication, known_bug=BUG-101
+[2026-05-18 20:29:32] bug_analyzer_agent        INFO     R005 → severity=Critical, component=Sync, known_bug=BUG-101
+[2026-05-18 20:29:33] bug_analyzer_agent        INFO     R008 → severity=High, component=Dashboard, known_bug=BUG-101
+[2026-05-18 20:29:33] bug_analyzer_agent        INFO     R010 → severity=Critical, component=General, known_bug=BUG-101
+[2026-05-18 20:29:34] bug_analyzer_agent        INFO     R012 → severity=High, component=Notifications, known_bug=BUG-101
+[2026-05-18 20:29:35] bug_analyzer_agent        INFO     R015 → severity=High, component=Attachments, known_bug=BUG-101
+[2026-05-18 20:29:35] bug_analyzer_agent        INFO     R018 → severity=High, component=Search, known_bug=none
+[2026-05-18 20:29:36] bug_analyzer_agent        INFO     R025 → severity=Critical, component=Startup, known_bug=BUG-101
+[2026-05-18 20:29:36] bug_analyzer_agent        INFO     R027 → severity=High, component=Notifications, known_bug=BUG-101
+[2026-05-18 20:29:37] bug_analyzer_agent        INFO     R030 → severity=High, component=Accessibility, known_bug=BUG-103
+[2026-05-18 20:29:37] bug_analyzer_agent        INFO     E001 → severity=Critical, component=Settings, known_bug=BUG-101
+[2026-05-18 20:29:38] bug_analyzer_agent        INFO     E002 → severity=Critical, component=Authentication, known_bug=BUG-101
+[2026-05-18 20:29:38] bug_analyzer_agent        INFO     E004 → severity=High, component=Sync, known_bug=none
+[2026-05-18 20:29:39] bug_analyzer_agent        INFO     E006 → severity=High, component=Dashboard, known_bug=BUG-101
+[2026-05-18 20:29:39] bug_analyzer_agent        INFO     E007 → severity=Critical, component=Sync, known_bug=none
+[2026-05-18 20:29:40] bug_analyzer_agent        INFO     E008 → severity=High, component=Settings, known_bug=BUG-101
+[2026-05-18 20:29:40] bug_analyzer_agent        INFO     E010 → severity=Critical, component=Attachments, known_bug=BUG-101
+[2026-05-18 20:29:41] bug_analyzer_agent        INFO     E012 → severity=High, component=Search, known_bug=BUG-101
+[2026-05-18 20:29:41] bug_analyzer_agent        INFO     E013 → severity=High, component=Accessibility, known_bug=BUG-103
+[2026-05-18 20:29:42] bug_analyzer_agent        INFO     E015 → severity=High, component=Notifications, known_bug=BUG-101
+[2026-05-18 20:29:42] bug_analyzer_agent        INFO     E016 → severity=Critical, component=Startup, known_bug=BUG-101
+[2026-05-18 20:29:42] bug_analyzer_agent        INFO     E019 → severity=Critical, component=General, known_bug=BUG-101
+[2026-05-18 20:29:42] pipeline                  INFO     [STAGE] Feature Extractor | Enrich only Feature Request items with impact/context.
+[2026-05-18 20:29:42] feature_extractor_agent   INFO     [FLOW] Feature Extractor started: 15 feature items, mode=Deterministic fallback.
+[2026-05-18 20:29:43] feature_extractor_agent   INFO     R004 → Add dark mode support (impact=7, planned=true)
+[2026-05-18 20:29:43] feature_extractor_agent   INFO     R007 → Add calendar integration (impact=7, planned=true)
+[2026-05-18 20:29:44] feature_extractor_agent   INFO     R009 → Add recurring task templates (impact=6, planned=false)
+[2026-05-18 20:29:44] feature_extractor_agent   INFO     R013 → Add offline mode (impact=7, planned=true)
+[2026-05-18 20:29:45] feature_extractor_agent   INFO     R016 → Add Slack integration (impact=6, planned=true)
+[2026-05-18 20:29:45] feature_extractor_agent   INFO     R019 → Add subtask support (impact=7, planned=true)
+[2026-05-18 20:29:46] feature_extractor_agent   INFO     R024 → Add PDF export (impact=6, planned=true)
+[2026-05-18 20:29:47] feature_extractor_agent   INFO     R028 → Add Siri shortcuts integration (impact=6, planned=true)
+[2026-05-18 20:29:47] feature_extractor_agent   INFO     R029 → Add advanced sorting and filtering (impact=6, planned=true)
+[2026-05-18 20:29:48] feature_extractor_agent   INFO     E003 → Add dark mode support (impact=8, planned=true)
+[2026-05-18 20:29:48] feature_extractor_agent   INFO     E005 → Add calendar integration (impact=7, planned=true)
+[2026-05-18 20:29:49] feature_extractor_agent   INFO     E011 → Add Slack integration (impact=6, planned=true)
+[2026-05-18 20:29:49] feature_extractor_agent   INFO     E017 → Add PDF export (impact=6, planned=true)
+[2026-05-18 20:29:50] feature_extractor_agent   INFO     E018 → Add subtask support (impact=7, planned=true)
+[2026-05-18 20:29:51] feature_extractor_agent   INFO     E020 → Add advanced sorting and filtering (impact=6, planned=true)
+[2026-05-18 20:29:51] feature_extractor_agent   INFO     [FLOW] Feature Extractor completed: 15 feature items processed (0 errors).
+[2026-05-18 20:29:51] pipeline                  INFO     [STAGE] Ticket Creator | Generate structured tickets and detect duplicates.
+[2026-05-18 20:29:51] ticket_creator_agent      INFO     [FLOW] Ticket Creator started: 42 actionable items, mode=Deterministic fallback.
+[2026-05-18 20:29:52] ticket_creator_agent      INFO     R001 → DUPLICATE of E001
+[2026-05-18 20:29:53] ticket_creator_agent      INFO     R003 → DUPLICATE of E002
+[2026-05-18 20:29:54] ticket_creator_agent      INFO     R004 → DUPLICATE of E003
+[2026-05-18 20:29:55] ticket_creator_agent      INFO     R005 → DUPLICATE of E004
+[2026-05-18 20:29:56] ticket_creator_agent      INFO     R007 → DUPLICATE of E005
+[2026-05-18 20:29:57] ticket_creator_agent      INFO     R008 → DUPLICATE of E006
+[2026-05-18 20:29:58] ticket_creator_agent      INFO     R009 → DUPLICATE of R024
+[2026-05-18 20:29:59] ticket_creator_agent      INFO     R010 → DUPLICATE of E007
+[2026-05-18 20:30:00] ticket_creator_agent      INFO     R012 → DUPLICATE of E008
+[2026-05-18 20:30:01] ticket_creator_agent      INFO     R013 → DUPLICATE of TICKET:R013
+[2026-05-18 20:30:02] ticket_creator_agent      INFO     R014 → DUPLICATE of E009
+[2026-05-18 20:30:03] ticket_creator_agent      INFO     R015 → DUPLICATE of E010
+[2026-05-18 20:30:05] ticket_creator_agent      INFO     R016 → DUPLICATE of E011
+[2026-05-18 20:30:06] ticket_creator_agent      INFO     R018 → DUPLICATE of E012
+[2026-05-18 20:30:07] ticket_creator_agent      INFO     R019 → DUPLICATE of E018
+[2026-05-18 20:30:08] ticket_creator_agent      INFO     R020 → DUPLICATE of E019
+[2026-05-18 20:30:09] ticket_creator_agent      INFO     R024 → DUPLICATE of E017
+[2026-05-18 20:30:10] ticket_creator_agent      INFO     R025 → DUPLICATE of E016
+[2026-05-18 20:30:11] ticket_creator_agent      INFO     R027 → DUPLICATE of E015
+[2026-05-18 20:30:12] ticket_creator_agent      INFO     R028 → DUPLICATE of TICKET:R028
+[2026-05-18 20:30:13] ticket_creator_agent      INFO     R029 → DUPLICATE of E020
+[2026-05-18 20:30:14] ticket_creator_agent      INFO     R030 → DUPLICATE of E013
+[2026-05-18 20:30:15] ticket_creator_agent      INFO     E001 → DUPLICATE of R001
+[2026-05-18 20:30:16] ticket_creator_agent      INFO     E002 → DUPLICATE of R003
+[2026-05-18 20:30:18] ticket_creator_agent      INFO     E003 → DUPLICATE of R004
+[2026-05-18 20:30:19] ticket_creator_agent      INFO     E004 → DUPLICATE of R005
+[2026-05-18 20:30:20] ticket_creator_agent      INFO     E005 → DUPLICATE of R007
+[2026-05-18 20:30:21] ticket_creator_agent      INFO     E006 → DUPLICATE of R008
+[2026-05-18 20:30:22] ticket_creator_agent      INFO     E007 → DUPLICATE of R010
+[2026-05-18 20:30:23] ticket_creator_agent      INFO     E008 → DUPLICATE of R012
+[2026-05-18 20:30:24] ticket_creator_agent      INFO     E009 → DUPLICATE of R014
+[2026-05-18 20:30:25] ticket_creator_agent      INFO     E010 → DUPLICATE of R015
+[2026-05-18 20:30:26] ticket_creator_agent      INFO     E011 → DUPLICATE of R016
+[2026-05-18 20:30:27] ticket_creator_agent      INFO     E012 → DUPLICATE of R018
+[2026-05-18 20:30:27] ticket_creator_agent      INFO     E013 → DUPLICATE of R030
+[2026-05-18 20:30:28] ticket_creator_agent      INFO     E014 → DUPLICATE of R017
+[2026-05-18 20:30:30] ticket_creator_agent      INFO     E015 → DUPLICATE of R027
+[2026-05-18 20:30:31] ticket_creator_agent      INFO     E016 → DUPLICATE of R025
+[2026-05-18 20:30:32] ticket_creator_agent      INFO     E017 → DUPLICATE of R024
+[2026-05-18 20:30:33] ticket_creator_agent      INFO     E018 → DUPLICATE of R019
+[2026-05-18 20:30:34] ticket_creator_agent      INFO     E019 → DUPLICATE of R020
+[2026-05-18 20:30:35] ticket_creator_agent      INFO     E020 → DUPLICATE of R029
+[2026-05-18 20:30:35] ticket_creator_agent      INFO     [FLOW] Ticket Creator completed: 42 tickets generated, 42 duplicates flagged (0 errors).
+[2026-05-18 20:30:35] pipeline                  INFO     [STAGE] Quality Critic | Score ticket quality and revise low-quality entries.
+[2026-05-18 20:30:35] quality_critic_agent      INFO     [FLOW] Quality Critic started: 42 tickets, mode=Deterministic fallback.
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R001 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R003 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R004 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R005 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R007 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R008 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R009 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R010 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R012 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R013 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R014 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R015 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R016 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R018 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R019 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R020 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R024 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R025 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R027 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R028 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R029 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     R030 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E001 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E002 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E003 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E004 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E005 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E006 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E007 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E008 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E009 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E010 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E011 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E012 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E013 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E014 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E015 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E016 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E017 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E018 → quality=0.90 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E019 → quality=0.98 (OK)
+[2026-05-18 20:30:35] quality_critic_agent      INFO     E020 → quality=0.90 (OK)
+[2026-05-18 20:30:35] pipeline                  INFO     [STAGE] Save Outputs | Write tickets, logs, metrics, and run reports.
+[2026-05-18 20:30:36] pipeline                  INFO     Pipeline complete: 50 items processed in 70.5s, accuracy=0.87

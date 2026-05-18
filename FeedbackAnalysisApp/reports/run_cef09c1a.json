@@ -1,0 +1,36 @@
+{
+  "run_id": "cef09c1a",
+  "generated_at": "2026-05-18T15:00:36.043831+00:00",
+  "flow_summary": {
+    "step_1": "CSV Reader loads app reviews and support emails.",
+    "step_2": "Classifier assigns category and confidence.",
+    "step_3": "Bug Analyzer enriches bug items with technical details.",
+    "step_4": "Feature Extractor enriches feature request items.",
+    "step_5": "Ticket Creator builds structured tickets and checks duplicates.",
+    "step_6": "Quality Critic scores ticket quality and revises if needed.",
+    "step_7": "Outputs are saved to CSV and SQLite with metrics."
+  },
+  "metrics": {
+    "run_id": "cef09c1a",
+    "total_processed": 50,
+    "bugs_count": 23,
+    "features_count": 15,
+    "praise_count": 6,
+    "complaints_count": 4,
+    "spam_count": 2,
+    "avg_confidence": 0.9048,
+    "processing_time_seconds": 70.49,
+    "accuracy": 0.87
+  },
+  "outputs": {
+    "generated_tickets_csv": "C:\\githubrepos\\Anil_github_repos\\AgenticAI\\FeedbackAnalysisApp\\data\\generated_tickets.csv",
+    "processing_log_csv": "C:\\githubrepos\\Anil_github_repos\\AgenticAI\\FeedbackAnalysisApp\\data\\processing_log.csv",
+    "metrics_csv": "C:\\githubrepos\\Anil_github_repos\\AgenticAI\\FeedbackAnalysisApp\\data\\metrics.csv"
+  },
+  "counts": {
+    "input_feedback_items": 50,
+    "tickets_with_title": 42,
+    "duplicate_tickets": 42
+  },
+  "errors": []
+}

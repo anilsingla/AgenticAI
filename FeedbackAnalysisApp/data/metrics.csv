@@ -1,0 +1,4 @@
+run_id,total_processed,bugs_count,features_count,praise_count,complaints_count,spam_count,avg_confidence,processing_time_seconds,accuracy
+defb979d,50,23,15,6,4,2,0.9048,93.87,0.87
+48f29dc7,50,23,15,6,4,2,0.9048,89.91,0.87
+cef09c1a,50,23,15,6,4,2,0.9048,70.49,0.87
