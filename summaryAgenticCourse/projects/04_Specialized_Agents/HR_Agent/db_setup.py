@@ -9,6 +9,7 @@ def init_db():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
+    # Recreate table for deterministic demo data each time setup is run.
     cur.execute("DROP TABLE IF EXISTS employees")
     cur.execute("""
         CREATE TABLE employees (

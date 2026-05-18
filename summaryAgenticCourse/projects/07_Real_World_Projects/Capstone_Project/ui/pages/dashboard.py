@@ -53,6 +53,7 @@ def render():
             show_dupes = st.checkbox("Show duplicates", value=False)
             display_df = df_tickets
             if not show_dupes:
+                # Beginner note: hide duplicates by default so triage starts with unique tickets.
                 display_df = df_tickets[df_tickets["is_duplicate"] != "True"]
 
             st.subheader(f"Generated Tickets ({len(display_df)})")

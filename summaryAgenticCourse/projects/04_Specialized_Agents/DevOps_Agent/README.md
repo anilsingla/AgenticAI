@@ -303,3 +303,22 @@ docker-compose down
 # Stop and remove volumes
 docker-compose down -v
 ```
+
+## Files Explained (Beginner View)
+
+- `agent.py`: LangGraph orchestration loop (reason, call tools, produce final report)
+- `tools.py`: Tool wrappers for Loki queries, runbook search, Docker/SSH diagnostics
+- `runbook_rag.py`: Builds/loads FAISS index from runbooks and performs retrieval
+- `log_generator.py`: Generates and sends synthetic logs to Loki
+- `report_generator.py`: Converts structured analysis to styled HTML report
+- `runbooks/`: Incident resolution knowledge base documents
+- `reports/`: Generated HTML reports output folder
+- `docker-compose.yml`: Local Grafana/Loki stack definition
+- `requirements.txt`: Python dependency list
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o-mini`: pay-per-token for analysis and synthesis
+- OpenAI embeddings (for runbook indexing): pay-per-token
+- Docker/Grafana/Loki local stack: no direct license fee for local usage
+- Optional SSH target infra costs depend on your cloud/on-prem environment

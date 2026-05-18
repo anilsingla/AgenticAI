@@ -22,6 +22,7 @@ class CustomerCareFlow(Flow[CustomerCareState]):
 
     @start()
     def intake_issue(self):
+        # Beginner note: first classify the issue so flow routing can pick a specialist.
         print(f"\nCustomer: {self.state.customer_name}")
         print(f"Issue: {self.state.issue}")
 
@@ -53,6 +54,7 @@ class CustomerCareFlow(Flow[CustomerCareState]):
 
     @router(intake_issue)
     def route_to_specialist(self):
+        # Beginner note: return value must match one of the @listen("...") branch names.
         if self.state.issue_category in ["billing", "technical", "general"]:
             return self.state.issue_category
         return "general"  # default fallback
@@ -149,6 +151,7 @@ class CustomerCareFlow(Flow[CustomerCareState]):
 
     @listen(or_(billing_specialist, technical_specialist, general_support))
     def ticket_writer(self):
+        # Beginner note: this final step converts agent output into a structured ticket format.
         agent = Agent(
             role="Ticket Documentation Specialist",
             goal="Create accurate and complete support ticket summaries",

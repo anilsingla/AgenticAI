@@ -64,6 +64,7 @@ def query_similar(collection, query_text: str, n_results: int = 5):
     """Query a collection for similar documents."""
     count = collection.count()
     if count == 0:
+        # Return empty Chroma-like structure to keep callers simple.
         return {"ids": [[]], "documents": [[]], "distances": [[]], "metadatas": [[]]}
     actual_n = min(n_results, count)
     return collection.query(query_texts=[query_text], n_results=actual_n)
@@ -88,7 +89,7 @@ def load_product_docs():
         content = md_file.read_text(encoding="utf-8")
         filename = md_file.name
 
-        # Split by ## headings into chunks for better retrieval
+        # Split by headings so retrieval returns semantically coherent sections.
         sections = _split_into_sections(content)
         for section_title, section_body in sections:
             if len(section_body.strip()) < 20:

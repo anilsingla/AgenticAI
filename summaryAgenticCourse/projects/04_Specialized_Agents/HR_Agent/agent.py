@@ -46,12 +46,14 @@ class AgentState(TypedDict):
 
 # ── Nodes ────────────────────────────────────────────────────────────────────
 def agent_node(state: AgentState) -> dict:
+    # Inject system prompt every turn so behavior stays consistent.
     messages = [SystemMessage(content=SYSTEM_PROMPT)] + state["messages"]
     response = llm_with_tools.invoke(messages)
     return {"messages": [response]}
 
 
 def tool_node(state: AgentState) -> dict:
+    # Execute each requested tool call and feed the results back to the agent.
     last_message = state["messages"][-1]
     tool_map = {t.name: t for t in ALL_TOOLS}
     results = []
@@ -66,6 +68,7 @@ def tool_node(state: AgentState) -> dict:
 
 
 def should_continue(state: AgentState) -> str:
+    # If the model asked for a tool, route to tools; otherwise finish.
     last_message = state["messages"][-1]
     if hasattr(last_message, "tool_calls") and last_message.tool_calls:
         return "tools"
@@ -74,6 +77,7 @@ def should_continue(state: AgentState) -> str:
 
 # ── Build graph ──────────────────────────────────────────────────────────────
 def build_agent():
+    # LangGraph loop: agent -> tools -> agent until no tool calls remain.
     graph = StateGraph(AgentState)
     graph.add_node("agent", agent_node)
     graph.add_node("tools", tool_node)

@@ -65,6 +65,7 @@ Return your evaluation in the required structured format.""",
 def seed():
     for name, content in PROMPTS.items():
         try:
+            # Compare current production prompt to avoid unnecessary new versions.
             existing = langfuse.get_prompt(name, label="production")
             if existing.prompt == content:
                 print(f"[skip]   {name} (unchanged)")

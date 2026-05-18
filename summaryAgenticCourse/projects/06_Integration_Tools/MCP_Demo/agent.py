@@ -25,6 +25,7 @@ async def run_agent(user_input: str):
     ) as client:
         tools = client.get_tools()
 
+        # ReAct agent decides which MCP tool to call based on user request.
         llm = ChatOpenAI(
             model="gpt-4o-mini",
             api_key=os.getenv("OPENAI_API_KEY"),
@@ -44,6 +45,7 @@ if __name__ == "__main__":
     print("Type 'exit' to quit.\n")
 
     while True:
+        # Simple local CLI loop for interactive testing.
         user_input = input("You: ").strip()
         if user_input.lower() in ("exit", "quit"):
             break

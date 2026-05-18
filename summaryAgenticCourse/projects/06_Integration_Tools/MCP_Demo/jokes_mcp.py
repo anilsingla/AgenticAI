@@ -76,6 +76,7 @@ def get_all_jokes() -> str:
 
 
 if __name__ == "__main__":
+    # Expose MCP tools over HTTP so remote MCP clients can connect.
     app = mcp.http_app(transport="http", stateless_http=True)
     app_with_cors = CORSMiddleware(
         app=app,

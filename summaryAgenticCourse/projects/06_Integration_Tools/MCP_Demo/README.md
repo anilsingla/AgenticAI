@@ -282,3 +282,19 @@ The servers are registered in `.mcp.json` at the project root for use directly i
 ```
 
 Restart Claude Code after editing `.mcp.json` for changes to take effect.
+
+## Files Explained (Beginner View)
+
+- `app.py`: Date/time MCP server (stdio transport)
+- `jokes_mcp.py`: Joke MCP server (HTTP transport)
+- `agent.py`: LangGraph agent that connects to MCP tools
+- `Dockerfile`: Container setup for deploying HTTP jokes server
+- `requirements.txt`: Project dependencies
+- `.env.example`/`.env`: API keys and environment configuration
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o-mini` in `agent.py`: pay-per-token
+- Local MCP servers (stdio/http): no direct MCP protocol fee
+- Azure Container Instances (if deployed): billed by container CPU/memory/runtime
+- Docker local usage: no direct fee, but uses local machine resources

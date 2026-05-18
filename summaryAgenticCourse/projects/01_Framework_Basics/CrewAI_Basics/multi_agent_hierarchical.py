@@ -88,6 +88,7 @@ writer_task = Task(
     allow_delegation=True
 )
 
+# Hierarchical mode introduces a manager LLM to coordinate delegation and ordering.
 crew = Crew(
     name="Story Writers",
     agents=[researcher, analyst, writer], 

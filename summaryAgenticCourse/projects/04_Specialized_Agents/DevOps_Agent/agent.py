@@ -74,6 +74,7 @@ def create_agent():
     def agent_node(state: AgentState) -> dict:
         """Main agent reasoning node."""
         messages = state["messages"]
+        # Ensure system instructions are present for every new run.
         if not any(isinstance(m, SystemMessage) for m in messages):
             messages = [SystemMessage(content=SYSTEM_PROMPT)] + messages
         response = llm_with_tools.invoke(messages)
@@ -91,7 +92,7 @@ def create_agent():
         last_message = state["messages"][-1]
         content = last_message.content if hasattr(last_message, "content") else str(last_message)
 
-        # Try to extract JSON from the response
+        # Prefer structured JSON so the report renderer can format sections cleanly.
         analysis = None
         if "```json" in content:
             try:

@@ -289,3 +289,31 @@ Key settings in `.env`:
 | `CRITICAL_RATING_THRESHOLD` | `1` | Rating threshold for Critical priority |
 | `HIGH_RATING_THRESHOLD` | `2` | Rating threshold for High priority |
 | `MEDIUM_RATING_THRESHOLD` | `3` | Rating threshold for Medium priority |
+
+## Prerequisites And Requirements
+
+- Python 3.10+ (or Docker/Docker Compose)
+- OpenAI API key (`OPENAI_API_KEY`)
+- Basic understanding of: CSV input, RAG, multi-agent pipeline, Streamlit UI
+- Disk space for SQLite DB, Chroma collections, and generated artifacts
+
+## Files Explained (Beginner View)
+
+- `agents/pipeline.py`: Main orchestration graph and output persistence
+- `agents/csv_reader.py`: Input normalization from CSV to pipeline state
+- `agents/classifier.py`: Feedback classification step
+- `agents/bug_analyzer.py`: Bug-focused enrichment with product-doc context
+- `agents/feature_extractor.py`: Feature request analysis with roadmap context
+- `agents/ticket_creator.py`: Ticket drafting + duplicate checks
+- `agents/quality_critic.py`: Quality scoring and auto-revision pass
+- `config/vectorstore.py`: Chroma setup and collection helpers
+- `config/database.py`: SQLAlchemy models and DB session plumbing
+- `ui/app.py` + `ui/pages/*`: Streamlit interface and dashboards
+- `data/*`: sample inputs, expected labels, and product documentation
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o-mini`: pay-per-token for all agent calls
+- OpenAI embeddings (if configured for vectorization): pay-per-token
+- ChromaDB/SQLite/Streamlit local: no managed service fee in local run
+- Docker usage: no license fee for local demo, but uses machine resources

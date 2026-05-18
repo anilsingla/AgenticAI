@@ -132,3 +132,24 @@ To roll back: re-label the previous version as `production` in the UI.
 - **`401 Incorrect API key`** — `OPENAI_API_KEY` in `.env` is invalid; agent never calls a tool.
 - **Evaluator failed: `'dict' object has no attribute 'name'`** — evaluators must return `Evaluation` objects (`from langfuse import Evaluation`), not dicts.
 - **No scores show up** — check `langfuse.flush()` is called before the script exits.
+
+## Prerequisites And Requirements
+
+- Python 3.10+
+- OpenAI API key (`OPENAI_API_KEY`)
+- Langfuse credentials (`LANGFUSE_SECRET_KEY`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_BASE_URL`)
+- Basic understanding of traces, runs, and evaluation metrics
+
+## Files Explained (Beginner View)
+
+- `seed_prompts.py`: Creates/updates prompt templates in Langfuse
+- `seed_dataset.py`: Seeds sample resumes for repeatable evaluation
+- `resume_review_agent.py`: Main agent run + score attachment per trace
+- `run_experiment.py`: Batch evaluation over the dataset
+- `requirements.txt`: Python dependencies
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o-mini`: pay-per-token for tool outputs and judge scoring
+- Langfuse cloud: pricing varies by traces/events/storage; self-hosting shifts cost to your infra
+- Local script execution itself: no additional framework fee

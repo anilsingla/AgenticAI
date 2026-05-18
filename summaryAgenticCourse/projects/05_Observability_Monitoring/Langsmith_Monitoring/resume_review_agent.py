@@ -20,6 +20,7 @@ _PROMPT_CACHE: dict = {}
 
 
 def render(name: str, **vars) -> str:
+    # Cache prompt templates locally to avoid repeated network fetches.
     if name not in _PROMPT_CACHE:
         _PROMPT_CACHE[name] = client.pull_prompt(name)
     return _PROMPT_CACHE[name].format(**vars)
@@ -96,6 +97,7 @@ def run_agent(resume_text: str) -> tuple[str, set[str]]:
 
 
 def post_feedback(run_id, messages, resume_text: str, final_output: str):
+    # Feedback keys become filterable metrics in LangSmith experiments.
     resume_score = extract_resume_score(final_output)
     if resume_score is not None:
         client.create_feedback(
@@ -138,6 +140,7 @@ def review_resume(resume_text: str) -> str:
     )
     final_output = result["messages"][-1].content
 
+    # The traceable decorator creates this run context for feedback attachment.
     run_tree = get_current_run_tree()
     if run_tree is not None:
         post_feedback(run_tree.id, result["messages"], resume_text, final_output)

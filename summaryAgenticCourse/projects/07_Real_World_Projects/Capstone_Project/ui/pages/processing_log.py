@@ -38,6 +38,7 @@ def render():
     st.dataframe(df, use_container_width=True, hide_index=True)
 
     # ── Download ────────────────────────────────────────────────────
+    # Beginner note: export reflects current filters, not the full raw log.
     csv_bytes = df.to_csv(index=False).encode("utf-8")
     st.download_button(
         "Download Filtered Log",

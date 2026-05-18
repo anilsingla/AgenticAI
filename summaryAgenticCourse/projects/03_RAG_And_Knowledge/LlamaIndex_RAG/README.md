@@ -34,3 +34,25 @@ The RAG demo builds a vector index from `data/*.txt` on first run and persists i
 - `FunctionAgent` is the OpenAI-style tool-calling agent; switch to `ReActAgent` if you want explicit reasoning traces
 - In the multi-agent demo, `can_handoff_to=[...]` controls who each agent can pass control to; the orchestrator (`AgentWorkflow`) handles the routing
 - The RAG demo uses `text-embedding-3-small` for embeddings; change in `Settings.embed_model` to swap models
+
+## Prerequisites And Requirements
+
+- Python 3.10+ recommended
+- OpenAI API key in `.env`
+- Basic understanding of RAG terms: embeddings, chunks, retriever, index
+- Sufficient local disk for persisted vector index (`./storage`)
+
+## Files Explained (Beginner View)
+
+- `basic_agent.py`: Single tool-calling agent with two simple tools
+- `multi_agent.py`: Multi-agent handoff flow using `AgentWorkflow`
+- `rag_agent.py`: Builds/loads vector index, exposes retrieval as a tool, then answers with grounded context
+- `data/`: Source documents used to build the RAG index
+- `storage/`: Persisted index data (auto-created on first RAG run)
+- `requirements.txt`: Required dependencies
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o-mini`: pay-per-token for generation
+- OpenAI `text-embedding-3-small`: pay-per-token for embeddings during indexing/querying
+- Local vector storage (`storage/`): no managed DB fee in this demo

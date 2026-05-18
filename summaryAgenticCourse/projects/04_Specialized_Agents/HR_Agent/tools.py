@@ -16,9 +16,11 @@ POLICIES_DIR = os.path.join(BASE_DIR, "policies")
 # ── Build / load the vector store ────────────────────────────────────────────
 def get_vectorstore():
     embeddings = OpenAIEmbeddings()
+    # Reuse existing vector index if already built.
     if os.path.exists(CHROMA_DIR) and os.listdir(CHROMA_DIR):
         return Chroma(persist_directory=CHROMA_DIR, embedding_function=embeddings)
 
+    # First run path: load policies, chunk text, embed, and persist locally.
     loader = DirectoryLoader(POLICIES_DIR, glob="*.txt", loader_cls=TextLoader)
     docs = loader.load()
     splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
@@ -33,6 +35,7 @@ _vectorstore = None
 def _get_vs():
     global _vectorstore
     if _vectorstore is None:
+        # Lazy initialization avoids startup delay until a policy query is made.
         _vectorstore = get_vectorstore()
     return _vectorstore
 
@@ -61,6 +64,7 @@ def query_employee_database(sql: str) -> str:
     Use SELECT queries to look up employee information.
     NEVER use UPDATE, DELETE, or DROP statements."""
     sql_upper = sql.strip().upper()
+    # Safety guard: this tool is read-only by design.
     if any(kw in sql_upper for kw in ["UPDATE", "DELETE", "DROP", "INSERT", "ALTER"]):
         return "Error: Only SELECT queries are allowed."
     try:

@@ -39,6 +39,7 @@ def classifier_agent(state: PipelineState) -> dict:
 
     for item in items:
         try:
+            # Prompt is filled per item so model receives source-specific context.
             prompt = CLASSIFIER_PROMPT.format(
                 categories=", ".join(CATEGORIES),
                 source_type=item["source_type"],

@@ -12,6 +12,7 @@ llm3 = LLM(model="openai/gpt-4o-mini", temperature=1)
 search = SerperDevTool()
 scrape = ScrapeWebsiteTool()
 
+# Agent 1: gathers raw facts from the web.
 researcher = Agent(
     tools=[search, scrape],
     role="Web Researcher",
@@ -28,6 +29,7 @@ researcher = Agent(
     verbose=True,
 )
 
+# Agent 2: interprets the facts and identifies patterns.
 analyst = Agent(
     role="Industry Analyst",
     goal=("Analyze the gathered information and provide insights on the top 5"
@@ -39,6 +41,7 @@ analyst = Agent(
     verbose=True,
 )
 
+# Agent 3: converts research + analysis into a final human-readable brief.
 writer = Agent(
     role="Brief Writer",
     goal=("Write a brief summary of the top 5"
@@ -76,6 +79,7 @@ writer_task = Task(
     output_file="trends_summary.md"
 )
 
+# Sequential process means tasks run in the order listed.
 crew = Crew(
     name="Story Writers",
     agents=[researcher, analyst, writer], 

@@ -51,6 +51,7 @@ def render():
 
             with col1:
                 st.subheader("Quality Score Distribution")
+                # Beginner note: CSV fields are strings, so convert to numeric before plotting.
                 quality_scores = pd.to_numeric(df_tickets["quality_score"], errors="coerce").dropna()
                 if not quality_scores.empty:
                     st.bar_chart(quality_scores.value_counts(bins=5).sort_index())

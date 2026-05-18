@@ -67,4 +67,5 @@ def list_timezones(region: str = "") -> str:
 
 
 if __name__ == "__main__":
+    # stdio transport is ideal when another local process launches this server.
     mcp.run(transport="stdio")

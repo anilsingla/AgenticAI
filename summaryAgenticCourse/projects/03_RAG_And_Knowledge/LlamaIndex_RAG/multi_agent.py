@@ -46,6 +46,7 @@ writer = FunctionAgent(
     can_handoff_to=["researcher"],
 )
 
+# AgentWorkflow manages which agent is currently active and handles handoffs.
 workflow = AgentWorkflow(
     agents=[researcher, writer],
     root_agent="researcher",
@@ -55,6 +56,7 @@ workflow = AgentWorkflow(
 async def main():
     topic = "the rise of small language models in 2025-2026"
     print(f">>> Topic: {topic}\n")
+    # Single user message kicks off the full researcher -> writer collaboration.
     response = await workflow.run(user_msg=f"Write a short report on: {topic}")
     print("\n=== Final Output ===")
     print(response)

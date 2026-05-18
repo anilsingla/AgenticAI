@@ -17,6 +17,7 @@ chat = Agent(
     num_history_runs=5,
 )
 
+# Different session IDs isolate conversation history per user.
 session_id      = "praveen-session"
 session_id_2    = "amit-session"
 

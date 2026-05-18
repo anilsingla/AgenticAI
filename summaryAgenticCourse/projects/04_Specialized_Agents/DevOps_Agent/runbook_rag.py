@@ -27,6 +27,7 @@ def load_and_index_runbooks() -> FAISS:
     documents = loader.load()
     print(f"Loaded {len(documents)} runbook documents")
 
+    # Chunking improves retrieval relevance and keeps context size manageable.
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200,
@@ -48,6 +49,7 @@ def get_vectorstore() -> FAISS:
     """Load existing FAISS index or create a new one."""
     embeddings = OpenAIEmbeddings()
     if os.path.exists(FAISS_INDEX_PATH):
+        # Fast path for repeated runs.
         print("Loading existing FAISS index...")
         return FAISS.load_local(FAISS_INDEX_PATH, embeddings, allow_dangerous_deserialization=True)
     else:
@@ -60,6 +62,7 @@ def query_runbooks(query: str, vectorstore: FAISS = None) -> str:
     if vectorstore is None:
         vectorstore = get_vectorstore()
 
+    # Retrieve top-k similar chunks by embedding distance.
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
     docs = retriever.invoke(query)
 

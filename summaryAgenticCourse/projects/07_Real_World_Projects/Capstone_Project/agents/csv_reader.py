@@ -21,6 +21,7 @@ def csv_reader_agent(state: PipelineState) -> dict:
     errors: list[str] = list(state.get("errors", []))
 
     # ── App store reviews ──────────────────────────────────────────
+    # Normalize each row to unified FeedbackItem schema.
     try:
         df_reviews = pd.read_csv(INPUT_REVIEWS_PATH, dtype=str).fillna("")
         for _, row in df_reviews.iterrows():
@@ -43,6 +44,7 @@ def csv_reader_agent(state: PipelineState) -> dict:
         errors.append(msg)
 
     # ── Support emails ─────────────────────────────────────────────
+    # Same schema as reviews so downstream agents can stay source-agnostic.
     try:
         df_emails = pd.read_csv(INPUT_EMAILS_PATH, dtype=str).fillna("")
         for _, row in df_emails.iterrows():

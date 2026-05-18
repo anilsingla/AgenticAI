@@ -65,6 +65,7 @@ Return your evaluation in the required structured format.""",
 
 def seed():
     for name, content in PROMPTS.items():
+        # PromptTemplate keeps variable placeholders explicit and validated.
         template = PromptTemplate.from_template(content)
         try:
             client.push_prompt(name, object=template)

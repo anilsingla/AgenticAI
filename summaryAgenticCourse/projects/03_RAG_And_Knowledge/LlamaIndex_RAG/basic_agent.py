@@ -27,6 +27,7 @@ tools = [
     FunctionTool.from_defaults(fn=current_time),
 ]
 
+# FunctionAgent can choose among tools and call them when needed.
 agent = FunctionAgent(
     tools=tools,
     llm=OpenAI(model="gpt-4o-mini"),
@@ -38,6 +39,7 @@ agent = FunctionAgent(
 
 
 async def main():
+    # We run a small fixed question set so beginners can compare outputs.
     questions = [
         "What's the time right now?",
         "If my bill is $87.50 and I want to leave an 18% tip, what do I pay?",

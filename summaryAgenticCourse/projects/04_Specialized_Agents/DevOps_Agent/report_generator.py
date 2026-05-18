@@ -25,6 +25,7 @@ def generate_html_report(analysis: dict) -> str:
     recommendations = analysis.get("recommendations", [])
 
     error_rows = ""
+    # Render each issue as a table row with severity styling.
     for i, err in enumerate(errors, 1):
         level_class = "critical" if err.get("level") == "CRITICAL" else "error"
         error_rows += f"""

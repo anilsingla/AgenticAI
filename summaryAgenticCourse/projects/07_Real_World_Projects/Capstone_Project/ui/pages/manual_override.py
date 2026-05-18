@@ -27,6 +27,7 @@ def render():
     cat_filter = col_f1.multiselect("Filter by category", CATEGORIES, default=CATEGORIES)
     pri_filter = col_f2.multiselect("Filter by priority", PRIORITIES, default=PRIORITIES)
 
+    # Beginner note: filter rows first, then render editable controls only for visible tickets.
     filtered = df[df["category"].isin(cat_filter) & df["priority"].isin(pri_filter)]
     st.caption(f"Showing {len(filtered)} of {len(df)} tickets")
 
@@ -55,6 +56,7 @@ def render():
     st.divider()
 
     if st.button("Save All Changes", type="primary", use_container_width=True):
+        # Beginner note: write edits back by original row index, then save the CSV file.
         for edit in edited_rows:
             i = edit["idx"]
             df.at[i, "title"] = edit["title"]

@@ -139,6 +139,7 @@ def seed():
 
     existing = list(client.list_examples(dataset_id=ds.id))
     if existing:
+        # Keep script idempotent: skip duplicate uploads when examples already exist.
         print(f"[skip] {len(existing)} examples already exist; not re-uploading")
         return
 

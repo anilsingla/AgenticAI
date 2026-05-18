@@ -74,7 +74,7 @@ def ticket_creator_agent(state: PipelineState) -> dict:
             similar_feedback = query_similar(feedback_col, query_text, n_results=5)
             similar_tickets_result = query_similar(ticket_col, query_text, n_results=3)
 
-            # Format similar items for prompt (exclude self)
+            # Format similar items for prompt (exclude self) so model can judge duplication.
             similar_lines = []
             if similar_feedback["ids"][0]:
                 for sid, doc, dist in zip(
@@ -129,7 +129,7 @@ def ticket_creator_agent(state: PipelineState) -> dict:
                            f"duplicate_of={item['duplicate_of']}")
                 logger.info("%s → DUPLICATE of %s", item["source_id"], item["duplicate_of"])
             else:
-                # Store new ticket in RAG for future duplicate detection
+                # Store non-duplicate tickets so future runs can detect near-matches.
                 ticket_text = f"{ticket['title']} {ticket['description']}"
                 upsert_documents(
                     ticket_col,

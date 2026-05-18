@@ -53,6 +53,7 @@ def quality_critic_agent(state: PipelineState) -> dict:
             continue
 
         try:
+            # Review compares source feedback against generated ticket quality.
             prompt = QUALITY_PROMPT.format(
                 source_id=item["source_id"],
                 category=item.get("category", ""),

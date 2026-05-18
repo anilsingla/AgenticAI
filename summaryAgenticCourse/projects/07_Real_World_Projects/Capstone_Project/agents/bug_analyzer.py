@@ -54,6 +54,7 @@ def bug_analyzer_agent(state: PipelineState) -> dict:
             rag_results = query_similar(product_docs_col, item["text"], n_results=3)
             product_context = "\n---\n".join(rag_results["documents"][0]) if rag_results["documents"][0] else "No product documentation available."
 
+            # Feed both raw feedback + retrieved context to the LLM analyzer.
             prompt = BUG_ANALYSIS_PROMPT.format(
                 product_context=product_context,
                 source_type=item["source_type"],

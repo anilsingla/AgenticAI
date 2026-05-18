@@ -563,3 +563,31 @@ When you've completed this project, you should be able to:
 **Ready to explore advanced topics?** 👉 [Move to Multi-Agent Systems](../../02_Multi_Agent_Systems/README.md)
 
 Last Updated: May 18, 2026
+
+---
+
+## Prerequisites And Requirements
+
+- Python 3.10+ recommended
+- OpenAI API key (`OPENAI_API_KEY`)
+- Optional: Serper API key for web search tools (`SERPER_API_KEY`)
+- Basic understanding of agent/task workflow concepts
+
+## Files Explained (Beginner View)
+
+- `basic_agent.py`: Minimal single-agent CrewAI execution
+- `multi_agent.py`: Multi-agent sequential orchestration (research -> analysis -> write)
+- `multi_agent_hierarchical.py`: Hierarchical agent pattern with supervisor-like flow
+- `customer_care_flow.py`: Practical customer-support style process
+- `flow_linear.py`: Linear chain of tasks
+- `flow_branching.py`: Conditional path routing based on input/state
+- `prd_review.py`: Multi-role PRD review pipeline
+- `PRD.md`: Input document used for review examples
+- `CUSTOMER_CARE_README.md`: Project-specific scenario notes
+- `requirements.txt`: Python dependencies
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o-mini`: pay-per-token (low-cost for demos)
+- Serper API (if used by `SerperDevTool`): external paid plan after free quota
+- Website scraping tools: no direct API fee from CrewAI itself, but target sites may rate-limit

@@ -31,6 +31,7 @@ class ContentFlow(Flow[ContentState]):
 
     @listen(set_researcher_topic)
     def researcher(self):
+        # Beginner note: step 1 gathers external facts for all later steps.
         researcher_agent = Agent(
             tools=[search, scrape],
             role="Web Researcher",
@@ -60,6 +61,7 @@ class ContentFlow(Flow[ContentState]):
 
     @listen(researcher)
     def analyst(self):
+        # Beginner note: step 2 converts raw research into interpreted insights.
         analyst_agent = Agent(
             role="Industry Analyst",
             goal=f"Analyze research and provide insights on: {self.state.topic}",
@@ -87,6 +89,7 @@ class ContentFlow(Flow[ContentState]):
 
     @listen(analyst)
     def writer(self):
+        # Beginner note: step 3 packages outputs into a concise final brief.
         writer_agent = Agent(
             role="Brief Writer",
             goal=f"Write a concise brief on the top 5 trends for: {self.state.topic}",

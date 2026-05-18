@@ -21,6 +21,7 @@ web_agent = Agent(
     role="You are responsible web search"
 )
 
+# Specialist agent for market/price-specific queries.
 finance_agent = Agent(
     model=Gemini(id="gemini-2.5-pro"),
     tools=[YFinanceTools()],
@@ -33,6 +34,7 @@ finance_agent = Agent(
     role="You are responsible for answering questions about the stock market"
 )
 
+# Team coordinates both specialists to answer mixed questions.
 team = Team( 
     name="Finance and Web Team",
     model=Gemini(id="gemini-2.5-pro"),

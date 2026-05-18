@@ -19,6 +19,7 @@ EXPECTED_TOOLS = {"score_resume", "identify_strengths", "suggest_improvements"}
 
 
 def render(name: str, **vars) -> str:
+    # Prompts are fetched from Langfuse so prompt tuning does not require code edits.
     return langfuse.get_prompt(name, label="production").compile(**vars)
 
 
@@ -84,6 +85,7 @@ def tools_called(messages) -> set[str]:
 
 
 def score_run(trace_id: str, messages, resume_text: str, final_output: str):
+    # Attach structured numeric/boolean scores to the same trace for analysis.
     resume_score = extract_resume_score(final_output)
     if resume_score is not None:
         langfuse.create_score(
@@ -133,6 +135,7 @@ def run_agent(resume_text: str) -> tuple[str, set[str]]:
 
 
 def review_resume(resume_text: str) -> str:
+    # Production path: run once, then enrich trace with scoring metadata.
     result = agent.invoke(
         {"messages": [("human", f"Please review this resume:\n\n{resume_text}")]},
         config={"callbacks": [langfuse_handler]},

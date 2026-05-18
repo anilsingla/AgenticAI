@@ -30,6 +30,7 @@ def render():
     if uploaded_files:
         for f in uploaded_files:
             dest = PRODUCT_DOCS_DIR / f.name
+            # Beginner note: save uploaded files locally first, then index them into Chroma.
             dest.write_bytes(f.getvalue())
             st.success(f"Saved: {f.name}")
 
@@ -53,6 +54,7 @@ def render():
         col1, col2 = st.columns([5, 1])
         col1.markdown(f"**{md_file.name}** — {len(content):,} chars")
         if col2.button("Delete", key=f"del_{md_file.name}"):
+            # Beginner note: deleting a doc removes it from disk; re-index after cleanup.
             md_file.unlink()
             st.rerun()
 
@@ -75,6 +77,7 @@ def render():
         st.success(f"{chunk_count} chunks available for Bug Analyzer and Feature Extractor agents.")
 
     if st.button("Re-index All Documents"):
+        # Beginner note: rebuild embeddings for every document currently in the folder.
         with st.spinner("Re-indexing..."):
             count = load_product_docs()
         st.success(f"Re-indexed **{count}** chunks.")

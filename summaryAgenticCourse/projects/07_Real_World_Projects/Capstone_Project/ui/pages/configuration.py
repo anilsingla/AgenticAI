@@ -92,6 +92,7 @@ def render():
 
     # ── Save ───────────────────────────────────────────────────────
     if st.button("Save Configuration", type="primary"):
+        # Beginner note: save settings to .env so the next pipeline run uses them.
         updates = {
             "LLM_MODEL_NAME": model,
             "OPENAI_API_KEY": api_key,

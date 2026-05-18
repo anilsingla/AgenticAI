@@ -17,6 +17,7 @@ _vectorstore = None
 def _get_cached_vectorstore():
     global _vectorstore
     if _vectorstore is None:
+        # Load once per process to avoid repeated FAISS startup overhead.
         _vectorstore = get_vectorstore()
     return _vectorstore
 
@@ -99,6 +100,7 @@ def run_docker_command(command: str) -> str:
     Args:
         command: Docker command to run (e.g., 'ps', 'logs <container>', 'stats --no-stream')
     """
+    # Restrict command surface to read-only inspections for safety.
     allowed_prefixes = ["ps", "logs", "stats", "inspect", "images", "network ls", "volume ls", "system df"]
 
     is_allowed = any(command.strip().startswith(prefix) for prefix in allowed_prefixes)

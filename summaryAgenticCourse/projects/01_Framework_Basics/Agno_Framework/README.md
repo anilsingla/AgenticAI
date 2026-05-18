@@ -386,3 +386,25 @@ When you've completed this project, you should be able to:
 **Ready to continue?** 👉 [Move to CrewAI Basics](../CrewAI_Basics/README.md)
 
 Last Updated: May 18, 2026
+
+---
+
+## Prerequisites And Requirements
+
+- Python 3.10+ recommended
+- Basic Python syntax (functions, variables, imports)
+- OpenAI API key in `.env`
+- Jupyter Notebook installed (`pip install jupyter`)
+
+## Files Explained (Beginner View)
+
+- `basic_agent.ipynb`: Your first single-agent flow (create agent, send prompt, print response)
+- `state_memory_agent.ipynb`: Shows how agent memory/state helps with follow-up queries
+- `requirements.txt`: Python package list required to run notebooks
+- `.env.example`: Template for secrets and API keys
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o-mini`: pay-per-token model, typically low-cost for beginner demos
+- If you switch to larger models (`gpt-4o` etc.), cost can increase significantly
+- Jupyter/Agno/local notebook execution itself: no direct platform fee

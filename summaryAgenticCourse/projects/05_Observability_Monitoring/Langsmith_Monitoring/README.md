@@ -122,3 +122,24 @@ To roll back: select an older commit in the UI.
 - **No traces showing up** — confirm `LANGSMITH_TRACING=true` and `LANGSMITH_PROJECT` set; calls to LangChain/LangGraph auto-trace only when those vars are present
 - **`get_current_run_tree() is None`** — the function isn't running inside a traced context; the `@traceable` decorator on `review_resume` provides one
 - **Self-hosted instance** — set `LANGSMITH_ENDPOINT` to your URL; everything else works identically
+
+## Prerequisites And Requirements
+
+- Python 3.10+
+- OpenAI API key (`OPENAI_API_KEY`)
+- LangSmith API key (`LANGSMITH_API_KEY`) and tracing enabled
+- Basic understanding of prompt hub + dataset evaluation
+
+## Files Explained (Beginner View)
+
+- `seed_prompts.py`: Pushes prompt templates to LangSmith Prompt Hub
+- `seed_dataset.py`: Creates/updates sample dataset entries
+- `resume_review_agent.py`: Main agent logic and feedback posting
+- `run_experiment.py`: Batch evaluates runs against the dataset
+- `requirements.txt`: Dependencies
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o-mini`: pay-per-token for generation and judge passes
+- LangSmith: commercial usage plans vary by seats/runs/storage; check your account plan
+- Local execution: no additional runtime platform fee

@@ -26,6 +26,7 @@ def current_time() -> str:
 
 
 async def main():
+    # as_agent wraps model + tools + instructions into an executable agent.
     agent = OpenAIChatClient(model="gpt-4o-mini").as_agent(
         name="basic_agent",
         instructions=(

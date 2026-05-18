@@ -19,6 +19,7 @@ INDEX_DIR = Path(__file__).parent / "storage"
 
 
 def build_or_load_index() -> VectorStoreIndex:
+    # Reuse persisted index to avoid re-embedding every run.
     if INDEX_DIR.exists():
         storage = StorageContext.from_defaults(persist_dir=str(INDEX_DIR))
         return load_index_from_storage(storage)
@@ -44,6 +45,7 @@ def make_agent() -> FunctionAgent:
         ),
     )
 
+    # The system prompt forces retrieval first, then grounded answering.
     return FunctionAgent(
         tools=[rag_tool],
         llm=Settings.llm,
@@ -57,6 +59,7 @@ def make_agent() -> FunctionAgent:
 
 async def main():
     agent = make_agent()
+    # Last question is intentionally out-of-domain so you can see fallback behavior.
     questions = [
         "Who founded NimbusTech and when?",
         "What's the difference between the Pro and Enterprise plans?",

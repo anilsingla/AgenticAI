@@ -46,3 +46,24 @@ python rag_agent.py       # answers questions using docs in ./data
 | Multi-agent | `AgentWorkflow` + `can_handoff_to` | `SequentialBuilder` / `HandoffBuilder` / `WorkflowBuilder` |
 | RAG | First-class — `VectorStoreIndex` + `QueryEngineTool` | Build it yourself; MAF is orchestration-only |
 | Async | Yes, `await agent.run(q)` | Yes, `await agent.run(q)` |
+
+## Prerequisites And Requirements
+
+- Python 3.10+
+- OpenAI API key (`OPENAI_API_KEY`)
+- Basic async Python understanding (`async`/`await`)
+- Optional NumPy/OpenAI embeddings usage for the RAG demo
+
+## Files Explained (Beginner View)
+
+- `basic_agent.py`: One MAF agent using two simple function tools
+- `multi_agent.py`: Two-agent handoff pipeline (researcher to writer)
+- `rag_agent.py`: DIY RAG tool with OpenAI embeddings + cosine similarity
+- `data/`: Local text files for retrieval context
+- `requirements.txt`: Dependency list for all demos
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o-mini`: pay-per-token generation cost
+- OpenAI embeddings model (`text-embedding-3-small`): pay-per-token embedding cost
+- Local execution and in-memory retrieval: no managed vector DB fee in this demo

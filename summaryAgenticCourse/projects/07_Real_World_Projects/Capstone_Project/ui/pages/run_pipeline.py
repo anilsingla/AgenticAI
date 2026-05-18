@@ -37,6 +37,7 @@ def _execute_pipeline(status_placeholder):
     )
     start_time = time.time()
     state["_start_time"] = start_time
+    # Beginner note: merge each step output into one shared state object.
     state = {**state, **csv_reader_agent(state)}
     n_items = len(state["feedback_items"])
     status_placeholder.write(f"Loaded **{n_items}** feedback items.")
@@ -119,6 +120,7 @@ def render():
     if st.button("Run Analysis Pipeline", type="primary", use_container_width=True):
         with st.status("Running pipeline...", expanded=True) as status:
             try:
+                # Beginner note: run the full pipeline and stream status updates in the UI.
                 n_items, elapsed, errors = _execute_pipeline(st)
                 status.update(label=f"Pipeline complete! {n_items} items in {elapsed:.1f}s", state="complete")
 

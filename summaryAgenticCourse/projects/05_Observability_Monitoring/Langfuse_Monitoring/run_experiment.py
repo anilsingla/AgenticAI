@@ -71,6 +71,7 @@ def eval_resume_score(*, input, output, expected_output, metadata, **kwargs):
 
 
 def eval_judge(*, input, output, expected_output, metadata, **kwargs):
+    # LLM-as-judge produces rubric-based quality dimensions.
     verdict = llm_judge(output["resume_text"], output["review"])
     evaluations = []
     for criterion, result in verdict.model_dump().items():
@@ -92,6 +93,7 @@ def main():
     dataset = langfuse.get_dataset(DATASET_NAME)
     run_name = f"agent-eval-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
 
+    # run_experiment executes task + evaluators over all dataset items.
     result = dataset.run_experiment(
         name="resume-review-agent-eval",
         run_name=run_name,

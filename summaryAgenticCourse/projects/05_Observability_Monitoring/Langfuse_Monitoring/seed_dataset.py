@@ -128,6 +128,7 @@ ML Engineer Intern - BigTech (2020)
 
 def seed():
     try:
+        # Safe to rerun: existing dataset creation raises and is handled below.
         langfuse.create_dataset(
             name=DATASET_NAME,
             description="Sample resumes spanning strong/mid/weak/incomplete for agent eval",
@@ -137,6 +138,7 @@ def seed():
         print(f"[exists] dataset '{DATASET_NAME}' ({e.__class__.__name__})")
 
     for item in ITEMS:
+        # Stable IDs allow deterministic updates for the same examples.
         langfuse.create_dataset_item(
             dataset_name=DATASET_NAME,
             id=item["id"],

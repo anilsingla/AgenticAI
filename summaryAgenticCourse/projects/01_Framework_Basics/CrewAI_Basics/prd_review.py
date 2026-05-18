@@ -214,6 +214,7 @@ report_task = Task(
 
 # --- Crew ---
 
+# Sequential process is intentional: each specialist receives prior task context.
 crew = Crew(
     name="PRD Review Crew",
     agents=[prd_parser, tech_reviewer, ux_reviewer, business_reviewer, risk_assessor, report_writer],
@@ -223,6 +224,7 @@ crew = Crew(
 )
 
 if __name__ == "__main__":
+    # Allows quick local testing against any PRD path.
     prd_path = input("Enter the path to your PRD file (e.g. prd.md): ").strip() or PRD_FILE_PATH
     result = crew.kickoff(inputs={"prd_path": prd_path})
     print("\n" + "=" * 60)

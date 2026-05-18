@@ -108,3 +108,29 @@ All agent interactions are traced in Langfuse. Each chat message creates a trace
 - Full conversation flow
 
 View traces at your Langfuse dashboard URL configured in `.env`.
+
+## Prerequisites And Requirements
+
+- Python 3.10+
+- OpenAI API key (`OPENAI_API_KEY`)
+- Optional Langfuse keys for tracing (`LANGFUSE_*`)
+- Streamlit installed for UI usage
+- Basic SQL knowledge helps for DB query tool behavior
+
+## Files Explained (Beginner View)
+
+- `app.py`: Streamlit chat app that calls the LangGraph HR agent
+- `agent.py`: Agent graph logic (LLM node, tool node, memory, route rules)
+- `tools.py`: Two tools: policy retrieval (RAG) and employee DB query
+- `db_setup.py`: Creates and seeds sample employee database
+- `policies/`: Source policy documents used by Chroma vector retrieval
+- `chroma_db/`: Persisted vector index generated locally
+- `hr_database.db`: SQLite database file used by the SQL tool
+- `requirements.txt`: Python dependencies
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI `gpt-4o` (default in this project): higher cost than `gpt-4o-mini`
+- OpenAI embeddings (via `OpenAIEmbeddings`): pay-per-token
+- Langfuse: self-hosted can be infra-only cost; cloud plans vary by usage
+- SQLite/Chroma local usage: no direct managed service cost in this demo

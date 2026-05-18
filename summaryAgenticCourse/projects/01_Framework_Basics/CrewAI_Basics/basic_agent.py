@@ -21,6 +21,7 @@ writer = Agent(
     verbose=True,
 )
 
+# A Task is the unit of work an agent executes.
 rabbitStoryTask = Task(
     name="Write a story about the brave little rabbit",
     description=(
@@ -32,6 +33,7 @@ rabbitStoryTask = Task(
 )
 
 
+# A Crew orchestrates one or more agents and tasks.
 crew = Crew(
     name="Story Writers",
     agents=[writer], 

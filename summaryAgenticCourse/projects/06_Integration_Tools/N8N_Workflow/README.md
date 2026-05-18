@@ -437,3 +437,27 @@ Set `N8N_EDITOR_BASE_URL` and `WEBHOOK_URL` to the static domain once (using any
 3. Select the JSON file
 4. Reconnect credentials (n8n will prompt for any missing ones)
 5. Activate the workflow using the toggle in the top-right corner
+
+## Prerequisites And Requirements
+
+- n8n instance (self-hosted or cloud)
+- OpenAI API key for AI nodes
+- Pinecone account/API key for vector workflows
+- Gmail OAuth credentials for email-trigger workflows
+- SerpAPI key for market research workflow
+
+## Files Explained (Beginner View)
+
+- `HR Agent with RAG - Email Auto-Reply.json`: HR auto-reply workflow with Pinecone RAG
+- `Market Research Agent - Finance & Stocks.json`: Scheduled + on-demand market report workflow
+- `RAG (Text + File Ingest + Chat Query, Pinecone).json`: Webhook ingest + chat retrieval workflow
+- `n8n Basics Playground-2.json`: Learning workflow for core n8n concepts
+- `README.md`: Setup, architecture, trigger behavior, and import instructions
+
+## API/Tool Cost Notes (Approx, verify before usage)
+
+- OpenAI models (`gpt-4o`, `gpt-4o-mini`, embeddings): pay-per-token
+- Pinecone: billed by index/resources/usage depending plan
+- SerpAPI: billed by search request after free quota
+- n8n cloud: subscription-based; self-hosted cost is your infrastructure
+- Gmail API: generally free within Google API limits, but subject to quota

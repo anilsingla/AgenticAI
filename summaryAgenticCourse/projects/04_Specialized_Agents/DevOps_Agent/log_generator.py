@@ -102,7 +102,7 @@ def _fill_template(template: str) -> str:
 
 def generate_log_entry() -> dict:
     """Generate a single realistic log entry."""
-    # Weighted severity distribution: mostly INFO, some warnings, fewer errors
+    # Weighted severity distribution: mostly INFO, fewer critical issues.
     severity = random.choices(
         ["INFO", "WARNING", "ERROR", "CRITICAL"],
         weights=[50, 25, 20, 5],
@@ -123,6 +123,7 @@ def generate_log_entry() -> dict:
 
 def push_to_loki(entries: list[dict]) -> bool:
     """Push log entries to Loki via the HTTP API."""
+    # Loki expects logs grouped into streams by label sets.
     streams = {}
 
     for entry in entries:

@@ -11,6 +11,7 @@ from db_setup import init_db, DB_PATH
 
 # Initialize database if it doesn't exist
 if not os.path.exists(DB_PATH):
+    # Seed local DB once so new users can test queries immediately.
     init_db()
 
 from agent import chat
@@ -23,6 +24,7 @@ st.caption("Ask me about company policies, employee details, leave balances, and
 
 # ── Session state ────────────────────────────────────────────────────────────
 if "session_id" not in st.session_state:
+    # New chat session ID maps to LangGraph thread memory.
     st.session_state.session_id = str(uuid.uuid4())
 
 if "messages" not in st.session_state:
@@ -67,6 +69,7 @@ if prompt := st.chat_input("Ask your HR question..."):
 
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
+            # Pass session_id so follow-up context is preserved per user conversation.
             response = chat(prompt, session_id=st.session_state.session_id)
         st.markdown(response)
 

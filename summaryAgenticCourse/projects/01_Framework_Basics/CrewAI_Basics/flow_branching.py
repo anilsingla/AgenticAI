@@ -32,6 +32,7 @@ class ContentFlow(Flow[ContentState]):
 
     @router(set_researcher_topic)
     def route(self):
+        # Beginner note: validate required input early to avoid running empty downstream steps.
         if self.state.topic:
             return self.researcher
         else:
@@ -68,6 +69,7 @@ class ContentFlow(Flow[ContentState]):
 
     @listen(researcher)
     def analyst(self):
+        # Beginner note: each listener reads from shared state and writes its own output back.
         analyst_agent = Agent(
             role="Industry Analyst",
             goal=f"Analyze research and provide insights on: {self.state.topic}",
@@ -95,6 +97,7 @@ class ContentFlow(Flow[ContentState]):
 
     @listen(analyst)
     def writer(self):
+        # Beginner note: writer combines prior outputs into the final user-facing summary.
         writer_agent = Agent(
             role="Brief Writer",
             goal=f"Write a concise brief on the top 5 trends for: {self.state.topic}",

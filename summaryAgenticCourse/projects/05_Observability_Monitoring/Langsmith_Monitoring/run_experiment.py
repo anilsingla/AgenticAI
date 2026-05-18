@@ -63,6 +63,7 @@ def eval_resume_score_in_range(outputs: dict, reference_outputs: dict, **kwargs)
 
 
 def eval_judge(outputs: dict, **kwargs) -> list[dict]:
+    # Structured judge output becomes multiple LangSmith feedback keys.
     verdict = llm_judge(outputs["resume_text"], outputs["review"])
     results = []
     for criterion, r in verdict.model_dump().items():
@@ -82,6 +83,7 @@ def eval_judge(outputs: dict, **kwargs) -> list[dict]:
 
 def main():
     run_name = f"agent-eval-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+    # evaluate() orchestrates dataset iteration, tracing, and evaluator collection.
     result = client.evaluate(
         target,
         data=DATASET_NAME,
