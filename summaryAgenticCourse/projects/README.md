@@ -133,6 +133,33 @@ Integrate all: 05 + 06
 
 ---
 
+## 🚀 Deployment & Run Matrix
+
+Use this section as the single reference for how to run each app, where Docker lives, and current cloud script readiness.
+
+| App | Recommended Local Run | Docker Command | Cloud Readiness |
+|---|---|---|---|
+| 01_Framework_Basics/Agno_Framework | `jupyter notebook` (notebook-first) or `./deployment/windows-local/run_demo.ps1 -Entry basic_agent.ipynb` | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: template, AWS: template |
+| 01_Framework_Basics/CrewAI_Basics | `python basic_agent.py` or `./deployment/windows-local/run_demo.ps1 -Entry basic_agent.py` | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: template, AWS: template |
+| 03_RAG_And_Knowledge/LlamaIndex_RAG | `python basic_agent.py` or `./deployment/windows-local/run_demo.ps1 -Entry basic_agent.py` | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: template, AWS: template |
+| 04_Specialized_Agents/DevOps_Agent | `python -c "from agent import run_agent; run_agent()"` | `docker compose -f deployment/docker/docker-compose.yml up -d` | Azure: template, AWS: template |
+| 04_Specialized_Agents/HR_Agent | `python app.py` or `./deployment/windows-local/run_demo.ps1 -Entry app.py` | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: template, AWS: template |
+| 04_Specialized_Agents/MAF_Framework | `python basic_agent.py` or `./deployment/windows-local/run_demo.ps1 -Entry basic_agent.py` | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: template, AWS: template |
+| 05_Observability_Monitoring/Langfuse_Monitoring | `python resume_review_agent.py` | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: template, AWS: template |
+| 05_Observability_Monitoring/Langsmith_Monitoring | `python resume_review_agent.py` | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: template, AWS: template |
+| 06_Integration_Tools/MCP_Demo | `python agent.py` (or `python app.py` for DateTime MCP) | `docker build -f deployment/docker/Dockerfile -t jokes-mcp .` | Azure: template script + manual README flow, AWS: template |
+| 06_Integration_Tools/N8N_Workflow | Import JSON workflows into n8n UI | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: template, AWS: template |
+| 07_Real_World_Projects/Agno_Project | `python agent.py` | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: template, AWS: template |
+| 07_Real_World_Projects/Capstone_Project | `streamlit run ui/app.py` or `./deployment/windows-local/run_demo.ps1 -Entry ui/app.py` | `docker compose -f deployment/docker/docker-compose.yml up --build -d` | Azure: functional scripts, AWS: template |
+
+### Notes
+
+- All apps now include the same deployment scaffold under `deployment/` with `linux-local`, `windows-local`, `docker`, `azure`, and `aws` folders.
+- Azure and AWS scripts are templates for most apps. Capstone Project has a functional Azure deploy/terminate pair.
+- Standardized coding/log/report support files now exist in each app root: `docs/CODING_STANDARDS.md`, `logs/.gitkeep`, `reports/.gitkeep`.
+
+---
+
 ## 🚀 Quick Start Guide
 
 ### For First-Time Users

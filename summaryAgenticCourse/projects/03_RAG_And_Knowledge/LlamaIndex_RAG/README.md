@@ -1,4 +1,6 @@
-# LlamaIndex Demos
+﻿# LlamaIndex Demos
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 Three small demos showing the core agent patterns in LlamaIndex:
 
@@ -56,3 +58,5 @@ The RAG demo builds a vector index from `data/*.txt` on first run and persists i
 - OpenAI `gpt-4o-mini`: pay-per-token for generation
 - OpenAI `text-embedding-3-small`: pay-per-token for embeddings during indexing/querying
 - Local vector storage (`storage/`): no managed DB fee in this demo
+
+

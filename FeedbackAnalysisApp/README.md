@@ -4,14 +4,14 @@ An AI-powered multi-agent system that automatically processes user feedback from
 
 ## Features
 
-- **Automated Feedback Classification** â€” Classifies feedback into Bug, Feature Request, Praise, Complaint, or Spam with confidence scores
-- **RAG-Enhanced Bug Analysis** â€” Matches reported bugs against known issues using product documentation stored in ChromaDB
-- **RAG-Enhanced Feature Extraction** â€” Cross-references feature requests with the product roadmap to identify already-planned features
-- **Duplicate Detection** â€” Uses vector similarity search across feedback and ticket embeddings to flag duplicates
-- **Quality Assurance** â€” Auto-reviews and revises low-quality tickets (score < 0.7)
-- **Interactive Dashboard** â€” Real-time metrics, charts, and ticket management via Streamlit
-- **Product Docs Upload** â€” Upload technical documentation to enrich RAG context for agents
-- **Configurable Pipeline** â€” Adjust model, thresholds, and priority mappings from the UI
+- **Automated Feedback Classification** - Classifies feedback into Bug, Feature Request, Praise, Complaint, or Spam with confidence scores
+- **RAG-Enhanced Bug Analysis** - Matches reported bugs against known issues using product documentation stored in ChromaDB
+- **RAG-Enhanced Feature Extraction** - Cross-references feature requests with the product roadmap to identify already-planned features
+- **Duplicate Detection** - Uses vector similarity search across feedback and ticket embeddings to flag duplicates
+- **Quality Assurance** - Auto-reviews and revises low-quality tickets (score < 0.7)
+- **Interactive Dashboard** - Real-time metrics, charts, and ticket management via Streamlit
+- **Product Docs Upload** - Upload technical documentation to enrich RAG context for agents
+- **Configurable Pipeline** - Adjust model, thresholds, and priority mappings from the UI
 
 ## Technology Stack
 
@@ -179,51 +179,65 @@ flowchart TD
 
 ```
 FeedbackAnalysisApp/
-â”œâ”€â”€ agents/                    # AutoGen-backed agent modules
-â”‚   â”œâ”€â”€ bug_analyzer.py        # Bug analysis with product docs RAG
-â”‚   â”œâ”€â”€ classifier.py          # Feedback classification (5 categories)
-â”‚   â”œâ”€â”€ csv_reader.py          # CSV ingestion + RAG storage
-â”‚   â”œâ”€â”€ feature_extractor.py   # Feature extraction with roadmap RAG
-â”‚   â”œâ”€â”€ heuristics.py          # Deterministic fallback logic for offline/demo runs
-â”‚   â”œâ”€â”€ llm.py                 # Shared AutoGen/OpenAI helper + JSON parsing
-â”‚   â”œâ”€â”€ pipeline.py            # AutoGen orchestration + output saving
-â”‚   â”œâ”€â”€ quality_critic.py      # Ticket quality review + auto-revision
-â”‚   â”œâ”€â”€ state.py               # PipelineState & FeedbackItem TypedDicts
-â”‚   â””â”€â”€ ticket_creator.py      # Ticket creation + duplicate detection
-â”œâ”€â”€ config/                    # Configuration & infrastructure
-â”‚   â”œâ”€â”€ database.py            # SQLAlchemy models (Ticket, Metric, ProcessingLog)
-â”‚   â”œâ”€â”€ logger.py              # Structured logging to CSV + console
-â”‚   â”œâ”€â”€ settings.py            # Central config from .env
-â”‚   â””â”€â”€ vectorstore.py         # ChromaDB setup (3 collections) + helpers
-â”œâ”€â”€ data/                      # Input data & outputs
-â”‚   â”œâ”€â”€ app_store_reviews.csv  # Mock app reviews (30 rows)
-â”‚   â”œâ”€â”€ support_emails.csv     # Mock support emails (20 rows)
-â”‚   â”œâ”€â”€ expected_classifications.csv  # Ground truth labels
-â”‚   â””â”€â”€ product_docs/          # Technical docs for RAG
-â”‚       â”œâ”€â”€ architecture.md
-â”‚       â”œâ”€â”€ features.md
-â”‚       â”œâ”€â”€ known_bugs.md
-â”‚       â””â”€â”€ roadmap.md
-â”œâ”€â”€ ui/                        # Streamlit frontend
-â”‚   â”œâ”€â”€ app.py                 # Main app with sidebar navigation
-â”‚   â””â”€â”€ pages/
-â”‚       â”œâ”€â”€ dashboard.py       # Overview metrics & ticket table
-â”‚       â”œâ”€â”€ run_pipeline.py    # CSV upload & pipeline execution
-â”‚       â”œâ”€â”€ configuration.py   # Settings panel (model, thresholds)
-â”‚       â”œâ”€â”€ manual_override.py # Inline ticket editing
-â”‚       â”œâ”€â”€ analytics.py       # Charts & statistics
-â”‚       â”œâ”€â”€ processing_log.py  # Filterable log viewer
-â”‚       â””â”€â”€ product_docs.py    # Upload & manage RAG documents
-â”œâ”€â”€ tests/                     # Test suite (pytest)
-â”œâ”€â”€ logs/                      # Human-readable runtime flow logs
-â”‚   â””â”€â”€ pipeline_flow.log
-â”œâ”€â”€ reports/                   # Per-run summary reports for beginners
-â”‚   â”œâ”€â”€ latest_run_report.md
-â”‚   â””â”€â”€ latest_run_report.json
-â”œâ”€â”€ Dockerfile
-â”œâ”€â”€ docker-compose.yml
-â”œâ”€â”€ requirements.txt
-â””â”€â”€ .env                       # Environment configuration
+|-- agents/                    # AutoGen-backed agent modules
+|   |-- bug_analyzer.py        # Bug analysis with product docs RAG
+|   |-- classifier.py          # Feedback classification (5 categories)
+|   |-- csv_reader.py          # CSV ingestion + RAG storage
+|   |-- feature_extractor.py   # Feature extraction with roadmap RAG
+|   |-- heuristics.py          # Deterministic fallback logic for offline/demo runs
+|   |-- llm.py                 # Shared AutoGen/OpenAI helper + JSON parsing
+|   |-- pipeline.py            # AutoGen orchestration + output saving
+|   |-- quality_critic.py      # Ticket quality review + auto-revision
+|   |-- state.py               # PipelineState & FeedbackItem TypedDicts
+|   `-- ticket_creator.py      # Ticket creation + duplicate detection
+|-- config/                    # Configuration & infrastructure
+|   |-- database.py            # SQLAlchemy models (Ticket, Metric, ProcessingLog)
+|   |-- logger.py              # Structured logging to CSV + console
+|   |-- settings.py            # Central config from .env
+|   `-- vectorstore.py         # ChromaDB setup (3 collections) + helpers
+|-- data/                      # Input data & outputs
+|   |-- app_store_reviews.csv  # Mock app reviews (30 rows)
+|   |-- support_emails.csv     # Mock support emails (20 rows)
+|   |-- expected_classifications.csv  # Ground truth labels
+|   `-- product_docs/          # Technical docs for RAG
+|       |-- architecture.md
+|       |-- features.md
+|       |-- known_bugs.md
+|       `-- roadmap.md
+|-- ui/                        # Streamlit frontend
+|   |-- app.py                 # Main app with sidebar navigation
+|   `-- pages/
+|       |-- dashboard.py       # Overview metrics & ticket table
+|       |-- run_pipeline.py    # CSV upload & pipeline execution
+|       |-- configuration.py   # Settings panel (model, thresholds)
+|       |-- manual_override.py # Inline ticket editing
+|       |-- analytics.py       # Charts & statistics
+|       |-- processing_log.py  # Filterable log viewer
+|       `-- product_docs.py    # Upload & manage RAG documents
+|-- tests/                     # Test suite (pytest)
+|-- logs/                      # Human-readable runtime flow logs
+|   `-- pipeline_flow.log
+|-- reports/                   # Per-run summary reports for beginners
+|   |-- latest_run_report.md
+|   `-- latest_run_report.json
+|-- deployment/
+|   |-- linux-local/
+|   |   `-- run_demo.sh
+|   |-- windows-local/
+|   |   `-- run_demo.ps1
+|   |-- docker/
+|   |   |-- Dockerfile
+|   |   |-- docker-compose.yml
+|   |   |-- deploy.sh
+|   |   `-- terminate.sh
+|   |-- azure/
+|   |   |-- deploy.sh
+|   |   `-- terminate.sh
+|   `-- aws/
+|       |-- deploy.sh
+|       `-- terminate.sh
+|-- requirements.txt
+`-- .env                       # Environment configuration
 ```
 
 ## Learning-Friendly Observability
@@ -242,6 +256,8 @@ To understand flow quickly after each run:
 - Requirements traceability: `docs/REQUIREMENTS_TRACEABILITY.md`
 - User guide (deploy, run, interpret results): `docs/USER_GUIDE.md`
 - Developer guide (architecture, components, setup, stack): `docs/DEVELOPER_GUIDE.md`
+- Deployment scripts index (all environments): `deployment/README.md`
+- Demo runbook (prereqs + step-by-step execution): `docs/DEMO_RUNBOOK.md`
 - Demo presentation script (5-7 min talk track): `docs/DEMO_PRESENTATION_SCRIPT.md`
 
 ## One-Click Demo
@@ -249,17 +265,17 @@ To understand flow quickly after each run:
 From the `FeedbackAnalysisApp/` folder:
 
 ```powershell
-.\run_demo.ps1
+.\deployment\windows-local\run_demo.ps1
 ```
 
 Options:
 
 ```powershell
 # Skip pipeline and only start UI
-.\run_demo.ps1 -SkipPipeline
+.\deployment\windows-local\run_demo.ps1 -SkipPipeline
 
 # Run on a custom port
-.\run_demo.ps1 -Port 8502
+.\deployment\windows-local\run_demo.ps1 -Port 8502
 ```
 
 ### Prerequisites
@@ -276,7 +292,7 @@ If no API key is configured, the application still runs using deterministic fall
 echo "OPENAI_API_KEY=sk-your-key-here" >> .env
 
 # Build and start
-docker compose up --build -d
+docker compose -f deployment/docker/docker-compose.yml up --build -d
 
 # Open in browser
 open http://localhost:8501
@@ -301,23 +317,23 @@ streamlit run ui/app.py
 
 ## Usage
 
-1. **Run Pipeline** â€” Upload CSV files or use the included mock data, then click "Run Analysis Pipeline"
-2. **Dashboard** â€” View processed feedback metrics, category/priority charts, and generated tickets
-3. **Manual Override** â€” Edit ticket fields (title, category, priority, description) inline
-4. **Analytics** â€” Explore quality scores, confidence distributions, and processing trends
-5. **Product Docs** â€” Upload technical documentation (.md files) to improve RAG context
-6. **Configuration** â€” Adjust model, confidence thresholds, and priority mappings
+1. **Run Pipeline** - Upload CSV files or use the included mock data, then click "Run Analysis Pipeline"
+2. **Dashboard** - View processed feedback metrics, category/priority charts, and generated tickets
+3. **Manual Override** - Edit ticket fields (title, category, priority, description) inline
+4. **Analytics** - Explore quality scores, confidence distributions, and processing trends
+5. **Product Docs** - Upload technical documentation (.md files) to improve RAG context
+6. **Configuration** - Adjust model, confidence thresholds, and priority mappings
 
 ## Agent Details
 
 | Agent | Role | RAG Usage |
 |---|---|---|
 | **CSV Reader** | Parses reviews + emails into unified schema | Stores all feedback in `feedback_embeddings` |
-| **Classifier** | Categorizes into Bug / Feature / Praise / Complaint / Spam | â€” |
+| **Classifier** | Categorizes into Bug / Feature / Praise / Complaint / Spam | - |
 | **Bug Analyzer** | Extracts severity, component, steps to reproduce | Queries `product_docs` for known bugs & root causes |
 | **Feature Extractor** | Extracts impact score, user segment, planned status | Queries `product_docs` for roadmap & existing features |
 | **Ticket Creator** | Generates structured tickets with duplicate detection | Queries `feedback_embeddings` + `ticket_embeddings` |
-| **Quality Critic** | Scores ticket quality (0-1), auto-revises if < 0.7 | â€” |
+| **Quality Critic** | Scores ticket quality (0-1), auto-revises if < 0.7 | - |
 
 ## Configuration
 
@@ -325,7 +341,7 @@ Key settings in `.env`:
 
 | Variable | Default | Description |
 |---|---|---|
-| `OPENAI_API_KEY` | â€” | OpenAI API key (required) |
+| `OPENAI_API_KEY` | - | OpenAI API key (required) |
 | `LLM_MODEL_NAME` | `gpt-4o-mini` | Model for all agents |
 | `CLASSIFICATION_CONFIDENCE_THRESHOLD` | `0.7` | Min confidence for auto-classification |
 | `CRITICAL_RATING_THRESHOLD` | `1` | Rating threshold for Critical priority |

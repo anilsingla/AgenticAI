@@ -1,4 +1,6 @@
-# CrewAI_Basics - Multi-Agent Workflows
+﻿# CrewAI_Basics - Multi-Agent Workflows
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 Learn how to build multi-agent systems and workflows using CrewAI framework.
 
@@ -591,3 +593,5 @@ Last Updated: May 18, 2026
 - OpenAI `gpt-4o-mini`: pay-per-token (low-cost for demos)
 - Serper API (if used by `SerperDevTool`): external paid plan after free quota
 - Website scraping tools: no direct API fee from CrewAI itself, but target sites may rate-limit
+
+

@@ -1,4 +1,4 @@
-﻿# SignalDesk â€” Known Bugs & Technical Debt
+﻿# SignalDesk - Known Bugs & Technical Debt
 
 ## Active Bugs
 
@@ -40,7 +40,7 @@
 ### BUG-106: File attachment crash >5MB
 - **Severity**: High
 - **Affected**: Android, v3.2.1
-- **Root cause**: Memory allocation issue â€” entire file loaded into memory before chunked upload. OOM on devices with <6GB RAM for files >5MB.
+- **Root cause**: Memory allocation issue - entire file loaded into memory before chunked upload. OOM on devices with <6GB RAM for files >5MB.
 - **Workaround**: Compress files to <5MB before attaching
 - **Fix ETA**: v3.3.0
 
@@ -71,5 +71,5 @@
 - Attachment upload is synchronous (should be async with progress callback)
 - Notification system tightly coupled to Firebase SDK (no abstraction layer)
 - Search index rebuild requires full downtime (no zero-downtime reindex)
-- Accessibility audit incomplete â€” many UI elements missing ARIA/accessibility labels
+- Accessibility audit incomplete - many UI elements missing ARIA/accessibility labels
 

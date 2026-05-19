@@ -1,4 +1,6 @@
-# Agno_Project - Multi-Agent Finance And Support Demo
+﻿# Agno_Project - Multi-Agent Finance And Support Demo
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 This project demonstrates practical Agno usage with single-agent memory, multi-agent teamwork, and a refund-support bot workflow.
 
@@ -76,3 +78,4 @@ python refund_agent.py
 - Then run `agent_team.py` to see specialization across agents.
 - Run `refund_agent.py` last because it adds external platform integration (Telegram callbacks).
 - If responses fail, first verify `.env` keys and internet connectivity.
+

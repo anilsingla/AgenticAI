@@ -1,4 +1,6 @@
-# Resume Review Agent — LangSmith Setup
+﻿# Resume Review Agent — LangSmith Setup
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 LangSmith equivalent of the Langfuse setup. Same agent, same dataset, same evaluators — different observability backend.
 
@@ -143,3 +145,5 @@ To roll back: select an older commit in the UI.
 - OpenAI `gpt-4o-mini`: pay-per-token for generation and judge passes
 - LangSmith: commercial usage plans vary by seats/runs/storage; check your account plan
 - Local execution: no additional runtime platform fee
+
+

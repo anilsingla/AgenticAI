@@ -1,4 +1,6 @@
-# HR Agent
+﻿# HR Agent
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 An AI-powered HR Assistant built with LangGraph, OpenAI, and Langfuse. It answers employee queries about company policies and employee details through a Streamlit chat interface.
 
@@ -134,3 +136,5 @@ View traces at your Langfuse dashboard URL configured in `.env`.
 - OpenAI embeddings (via `OpenAIEmbeddings`): pay-per-token
 - Langfuse: self-hosted can be infra-only cost; cloud plans vary by usage
 - SQLite/Chroma local usage: no direct managed service cost in this demo
+
+

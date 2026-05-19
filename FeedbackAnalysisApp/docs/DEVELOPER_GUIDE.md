@@ -146,7 +146,7 @@ streamlit run ui/app.py
 ### One-click demo
 
 ```powershell
-.\run_demo.ps1
+.\deployment\windows-local\run_demo.ps1
 ```
 
 ## 5) Configuration Model

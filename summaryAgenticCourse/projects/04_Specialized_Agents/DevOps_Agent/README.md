@@ -1,4 +1,6 @@
-# DevOps Agent - Log Analysis & Incident Resolution
+﻿# DevOps Agent - Log Analysis & Incident Resolution
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 An AI-powered DevOps agent built with **LangGraph + LangChain + OpenAI** that automatically analyzes application logs from **Grafana/Loki**, searches **Runbooks via RAG** for resolution steps, and generates **HTML Incident Reports**.
 
@@ -191,13 +193,13 @@ OPENAI_API_KEY=sk-your-key-here
 This starts **Grafana** (port 3000) and **Loki** (port 3100):
 
 ```bash
-docker-compose up -d
+docker compose -f deployment/docker/docker-compose.yml up -d
 ```
 
 Verify containers are running:
 
 ```bash
-docker-compose ps
+docker compose -f deployment/docker/docker-compose.yml ps
 ```
 
 Wait for Loki to be ready:
@@ -260,7 +262,7 @@ For a step-by-step walkthrough, open [devops_agent.ipynb](devops_agent.ipynb) in
 
 ```
 DevOps Agent/
-├── docker-compose.yml              # Grafana + Loki containers
+├── deployment/docker/docker-compose.yml  # Grafana + Loki containers
 ├── loki-config.yml                 # Loki storage and schema config
 ├── grafana-datasources.yml         # Auto-provision Loki datasource
 ├── grafana-dashboard-provider.yml  # Dashboard provisioning config
@@ -298,10 +300,10 @@ DevOps Agent/
 
 ```bash
 # Stop containers
-docker-compose down
+docker compose -f deployment/docker/docker-compose.yml down
 
 # Stop and remove volumes
-docker-compose down -v
+docker compose -f deployment/docker/docker-compose.yml down -v
 ```
 
 ## Files Explained (Beginner View)
@@ -313,7 +315,7 @@ docker-compose down -v
 - `report_generator.py`: Converts structured analysis to styled HTML report
 - `runbooks/`: Incident resolution knowledge base documents
 - `reports/`: Generated HTML reports output folder
-- `docker-compose.yml`: Local Grafana/Loki stack definition
+- `deployment/docker/docker-compose.yml`: Local Grafana/Loki stack definition
 - `requirements.txt`: Python dependency list
 
 ## API/Tool Cost Notes (Approx, verify before usage)
@@ -322,3 +324,5 @@ docker-compose down -v
 - OpenAI embeddings (for runbook indexing): pay-per-token
 - Docker/Grafana/Loki local stack: no direct license fee for local usage
 - Optional SSH target infra costs depend on your cloud/on-prem environment
+
+

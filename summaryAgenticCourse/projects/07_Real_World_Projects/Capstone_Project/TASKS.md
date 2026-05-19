@@ -32,7 +32,7 @@
 | ID | Task | Description | Acceptance Criteria | Priority | Complexity | Depends On | Status |
 |---|---|---|---|---|---|---|---|
 | DB-01 | Initialise project & virtual environment | Create `requirements.txt` with all dependencies (langgraph, anthropic, chromadb, streamlit, pandas, sqlalchemy, etc.) | `pip install -r requirements.txt` succeeds | P0 | XS | — | ✅ Done |
-| DB-02 | Docker setup | Write `Dockerfile` and `docker-compose.yml` for the app | `docker compose up` boots the system | P0 | M | DB-01 | ✅ Done |
+| DB-02 | Docker setup | Write `deployment/docker/Dockerfile` and `deployment/docker/docker-compose.yml` for the app | `docker compose -f deployment/docker/docker-compose.yml up` boots the system | P0 | M | DB-01 | ✅ Done |
 | DB-03 | Configure SQLite | Set up DB connection layer using SQLAlchemy with SQLite; create tables for tickets, processing log, and metrics | Tables exist; CRUD operations verified | P0 | M | DB-01 | ✅ Done |
 | DB-04 | Configure ChromaDB | Initialise ChromaDB collection for storing feedback embeddings; write helper functions for upsert and query | Embeddings are stored and retrievable | P1 | M | DB-01 | ✅ Done |
 | DB-05 | Azure deployment config | Provision Azure App Service / Container Instance; set up environment variables and secrets in Azure Key Vault | App accessible at Azure URL | P2 | L | DB-02 | 🔲 |

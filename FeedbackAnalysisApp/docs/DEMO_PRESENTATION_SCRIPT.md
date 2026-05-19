@@ -2,6 +2,8 @@
 
 A guided walkthrough showcasing the agentic feedback operations platform in action.
 
+Start here before presenting: `docs/DEMO_RUNBOOK.md` (prerequisites, setup, commands, demo flow, artifacts).
+
 ## 0) Opening (30-45 sec)
 
 Welcome to SignalDesk—an agentic feedback operations platform designed to handle high-volume user feedback at enterprise scale.
@@ -37,7 +39,7 @@ All data flows through ChromaDB for semantic search, SQLite for persistence, and
 Run:
 
 ```powershell
-.\run_demo.ps1
+.\deployment\windows-local\run_demo.ps1
 ```
 
 Explain:

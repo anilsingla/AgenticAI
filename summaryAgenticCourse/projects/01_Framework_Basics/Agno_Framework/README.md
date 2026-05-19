@@ -1,4 +1,6 @@
-# Agno_Framework - Basic Agent Implementation
+﻿# Agno_Framework - Basic Agent Implementation
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 Learn the fundamentals of agentic AI using the Agno framework.
 
@@ -408,3 +410,5 @@ Last Updated: May 18, 2026
 - OpenAI `gpt-4o-mini`: pay-per-token model, typically low-cost for beginner demos
 - If you switch to larger models (`gpt-4o` etc.), cost can increase significantly
 - Jupyter/Agno/local notebook execution itself: no direct platform fee
+
+

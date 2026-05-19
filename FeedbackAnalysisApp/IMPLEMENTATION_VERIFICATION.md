@@ -662,7 +662,7 @@ JSON Report: reports/latest_run_report.json
 ### Quick Start
 ```powershell
 cd FeedbackAnalysisApp
-.\run_demo.ps1
+.\deployment\windows-local\run_demo.ps1
 ```
 
 This will:

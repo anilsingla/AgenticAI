@@ -1,4 +1,4 @@
-﻿# SignalDesk â€” Feature Documentation
+﻿# SignalDesk - Feature Documentation
 
 ## Current Features (v3.2.x)
 
@@ -52,7 +52,7 @@
 ## Known Limitations
 - No subtask support (planned for v3.3)
 - No recurring tasks (planned for v3.3)
-- No calendar integration (Google Calendar, Outlook) â€” planned for v3.4
+- No calendar integration (Google Calendar, Outlook) - planned for v3.4
 - No dark mode (planned for v3.3)
 - No offline mode on web (mobile only)
 - Attachment size limit: 10MB per file
@@ -64,6 +64,6 @@
 
 ## Subscription Plans
 - **Free**: Up to 5 projects, 50 tasks, no collaboration
-- **Premium**: $9.99/month â€” Unlimited projects/tasks, collaboration, analytics, priority support
-- **Enterprise**: Custom pricing â€” SSO, admin console, audit logs, dedicated support
+- **Premium**: $9.99/month - Unlimited projects/tasks, collaboration, analytics, priority support
+- **Enterprise**: Custom pricing - SSO, admin console, audit logs, dedicated support
 

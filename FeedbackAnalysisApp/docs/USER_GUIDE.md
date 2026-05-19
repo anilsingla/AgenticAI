@@ -16,7 +16,7 @@ The app automates user-feedback triage by:
 From FeedbackAnalysisApp folder:
 
 ```powershell
-.\run_demo.ps1
+.\deployment\windows-local\run_demo.ps1
 ```
 
 What this does:
@@ -57,7 +57,7 @@ streamlit run ui/app.py
 ### Option B: Docker Deployment
 
 ```powershell
-docker compose up --build -d
+docker compose -f deployment/docker/docker-compose.yml up --build -d
 ```
 
 Open:
@@ -199,7 +199,7 @@ pip install -r requirements.txt
 
 ## 8) Demo Flow (Presentation Ready)
 
-1. Start with .\run_demo.ps1
+1. Start with .\deployment\windows-local\run_demo.ps1
 2. Open Dashboard and show baseline metrics.
 3. Go to Run Pipeline and execute with mock CSVs.
 4. Show generated tickets and duplicate detection.

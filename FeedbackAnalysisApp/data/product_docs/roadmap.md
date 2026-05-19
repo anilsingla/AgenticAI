@@ -1,6 +1,6 @@
-﻿# SignalDesk â€” Product Roadmap
+﻿# SignalDesk - Product Roadmap
 
-## v3.2.2 (Hotfix â€” Target: March 2026)
+## v3.2.2 (Hotfix - Target: March 2026)
 - Fix Settings page crash on Android (BUG-101)
 - Fix authentication failure after password reset (BUG-102)
 - Renew APNS certificate for iOS push notifications (BUG-105)

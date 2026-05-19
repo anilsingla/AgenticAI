@@ -1,4 +1,6 @@
-# Intelligent User Feedback Analysis & Action System
+﻿# Intelligent User Feedback Analysis & Action System
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 An AI-powered multi-agent system that automatically processes user feedback from app store reviews and support emails, classifies them, extracts actionable insights, and generates structured support tickets — all with RAG-enhanced context from product documentation.
 
@@ -214,8 +216,13 @@ CapstoneProject/
 │       ├── processing_log.py  # Filterable log viewer
 │       └── product_docs.py    # Upload & manage RAG documents
 ├── tests/                     # Test suite (pytest)
-├── Dockerfile
-├── docker-compose.yml
+├── deployment/
+│   ├── docker/
+│   │   ├── Dockerfile
+│   │   └── docker-compose.yml
+│   └── azure/
+│       ├── deploy.sh
+│       └── terminate.sh
 ├── requirements.txt
 └── .env                       # Environment configuration
 ```
@@ -234,7 +241,7 @@ CapstoneProject/
 echo "OPENAI_API_KEY=sk-your-key-here" >> .env
 
 # Build and start
-docker compose up --build -d
+docker compose -f deployment/docker/docker-compose.yml up --build -d
 
 # Open in browser
 open http://localhost:8501
@@ -317,3 +324,5 @@ Key settings in `.env`:
 - OpenAI embeddings (if configured for vectorization): pay-per-token
 - ChromaDB/SQLite/Streamlit local: no managed service fee in local run
 - Docker usage: no license fee for local demo, but uses machine resources
+
+

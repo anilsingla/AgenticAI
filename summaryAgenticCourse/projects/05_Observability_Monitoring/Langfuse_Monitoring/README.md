@@ -1,4 +1,6 @@
-# Resume Review Agent — Langfuse Setup
+﻿# Resume Review Agent — Langfuse Setup
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 A LangChain agent that reviews resumes, with full Langfuse integration:
 - Prompts managed in Langfuse (no hardcoded strings)
@@ -153,3 +155,5 @@ To roll back: re-label the previous version as `production` in the UI.
 - OpenAI `gpt-4o-mini`: pay-per-token for tool outputs and judge scoring
 - Langfuse cloud: pricing varies by traces/events/storage; self-hosting shifts cost to your infra
 - Local script execution itself: no additional framework fee
+
+

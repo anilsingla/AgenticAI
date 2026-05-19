@@ -1,4 +1,6 @@
-# MCP Demo
+﻿# MCP Demo
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 Two MCP servers built with **FastMCP** — a DateTime server (stdio) and a Jokes server (remote HTTP) — plus a **LangGraph agent** that connects to them via OpenAI.
 
@@ -11,7 +13,8 @@ MCP Demo/
 ├── app.py            # DateTime MCP server (stdio transport)
 ├── jokes_mcp.py      # Jokes MCP server (HTTP transport)
 ├── agent.py          # LangGraph ReAct agent using the DateTime MCP
-├── Dockerfile        # Docker image for the Jokes MCP server
+├── deployment/docker/Dockerfile        # Docker image for the Jokes MCP server
+├── deployment/docker/generate_certs.sh # Cert helper for secure endpoints
 ├── requirements.txt  # Python dependencies
 └── .env              # API keys (not committed)
 ```
@@ -172,7 +175,7 @@ You: exit
 ### Build the image
 
 ```bash
-docker build -t jokes-mcp .
+docker build -f deployment/docker/Dockerfile -t jokes-mcp .
 ```
 
 ### Run locally
@@ -220,6 +223,7 @@ az acr update --name jokesmcpregistry --admin-enabled true
 
 docker buildx build --platform linux/amd64 \
   -t jokesmcpregistry.azurecr.io/jokes-mcp:latest \
+  -f deployment/docker/Dockerfile \
   --push .
 ```
 
@@ -288,7 +292,7 @@ Restart Claude Code after editing `.mcp.json` for changes to take effect.
 - `app.py`: Date/time MCP server (stdio transport)
 - `jokes_mcp.py`: Joke MCP server (HTTP transport)
 - `agent.py`: LangGraph agent that connects to MCP tools
-- `Dockerfile`: Container setup for deploying HTTP jokes server
+- `deployment/docker/Dockerfile`: Container setup for deploying HTTP jokes server
 - `requirements.txt`: Project dependencies
 - `.env.example`/`.env`: API keys and environment configuration
 
@@ -298,3 +302,5 @@ Restart Claude Code after editing `.mcp.json` for changes to take effect.
 - Local MCP servers (stdio/http): no direct MCP protocol fee
 - Azure Container Instances (if deployed): billed by container CPU/memory/runtime
 - Docker local usage: no direct fee, but uses local machine resources
+
+

@@ -1,4 +1,6 @@
-# n8n Workflows
+﻿# n8n Workflows
+
+## New User Start Here`r`n`r`n1. Open `deployment/README.md` for the environment-specific run commands.`r`n2. For local execution, use one of:`r`n   - Windows: `./deployment/windows-local/run_demo.ps1``r`n   - Linux/macOS: `./deployment/linux-local/run_demo.sh``r`n3. Review project conventions in `docs/CODING_STANDARDS.md`.`r`n4. Check outputs after running:`r`n   - Logs: `logs/``r`n   - Reports: `reports/``r`n
 
 Four workflows built on the n8n instance at `https://n8n.mllearninghub.com`.
 Each workflow is exported as a JSON file and can be imported directly into any n8n instance.
@@ -461,3 +463,5 @@ Set `N8N_EDITOR_BASE_URL` and `WEBHOOK_URL` to the static domain once (using any
 - SerpAPI: billed by search request after free quota
 - n8n cloud: subscription-based; self-hosted cost is your infrastructure
 - Gmail API: generally free within Google API limits, but subject to quota
+
+
